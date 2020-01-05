@@ -9,11 +9,11 @@ const router: Router = Router();
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
  //   return next();
+     //console.log(`-----> requireAuth`);
      if (!req.headers || !req.headers.authorization){
          return res.status(401).send({ message: 'No authorization headers.' });
      }
-     
- 
+    
      const token_bearer = req.headers.authorization.split(' ');
      if(token_bearer.length != 2){
          return res.status(401).send({ message: 'Malformed token.' });
@@ -61,6 +61,7 @@ router.get('/signed-url/:fileName',
     requireAuth, 
     async (req: Request, res: Response) => {
     let { fileName } = req.params;
+    //console.log(`------->/signed-url/:fileName recives${fileName}`);  
     const url = AWS.getPutSignedUrl(fileName);
     res.status(201).send({url: url});
 });

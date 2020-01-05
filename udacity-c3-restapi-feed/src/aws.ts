@@ -29,7 +29,7 @@ export function getGetSignedUrl( key: string ): string{
         Key: key,
         Expires: signedUrlExpireSeconds
       });
-
+    //console.log(`------->getGetSignedUrl reurns ${url}`);  
     return url;
 }
 
@@ -48,6 +48,7 @@ export function getPutSignedUrl( key: string ){
       Key: key,
       Expires: signedUrlExpireSeconds
     });
+    //console.log(`------->getPutSignedUrl reurns ${url}`);  
 
     return url;
 }
